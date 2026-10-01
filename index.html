@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Akuarium Bocor</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="game">
+
+        <!-- HEADER -->
+        <div class="top-bar">
+            <div class="title">
+                🐟 AKUARIUM BOCOR
+            </div>
+
+            <div class="stats">
+                <div class="water-stat">
+                    <span>💧 AIR</span>
+                    <strong id="waterText">100%</strong>
+                </div>
+
+                <div class="time-stat">
+                    <span>⏱ WAKTU</span>
+                    <strong id="timeText">05:00</strong>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- AREA PERMAINAN -->
+        <div id="gameArea">
+
+            <!-- LANTAI -->
+            <div id="floor"></div>
+
+
+            <!-- AKUARIUM -->
+            <div id="aquarium">
+
+                <!-- KACA -->
+                <div class="glass-shine"></div>
+
+                <!-- AIR -->
+                <div id="water">
+
+                    <div class="water-wave wave1"></div>
+                    <div class="water-wave wave2"></div>
+
+                    <!-- IKAN -->
+                    <div id="fish">
+
+                        <div class="fish-body">
+                            <div class="fish-eye"></div>
+                            <div class="fish-mouth"></div>
+                        </div>
+
+                        <div class="fish-tail"></div>
+
+                        <div class="fish-fin"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- TITIK BOcor -->
+                <button id="leakPoint" aria-label="Tutup kebocoran">
+                    💧
+                </button>
+
+
+                <!-- SEMBURAN AIR -->
+                <div id="waterJet">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <!-- TANGAN -->
+                <div id="hand">
+                    🖐️
+                </div>
+
+            </div>
+
+
+            <!-- AREA IKAN KELUAR -->
+            <div id="escapeArea">
+
+                <div id="fishOutside">
+
+                    <div class="outside-fish-body">
+                        <div class="outside-eye"></div>
+                    </div>
+
+                    <div class="outside-tail"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- KUCING -->
+            <div id="cat">
+
+                <div class="cat-ear left-ear"></div>
+                <div class="cat-ear right-ear"></div>
+
+                <div class="cat-head">
+
+                    <div class="cat-eye left-eye"></div>
+                    <div class="cat-eye right-eye"></div>
+
+                    <div class="cat-nose"></div>
+
+                    <div class="cat-mouth">
+                        <span></span>
+                    </div>
+
+                    <div class="cat-whisker w1"></div>
+                    <div class="cat-whisker w2"></div>
+                    <div class="cat-whisker w3"></div>
+
+                </div>
+
+                <div class="cat-body"></div>
+
+                <div class="cat-paw left-paw"></div>
+                <div class="cat-paw right-paw"></div>
+
+                <div class="cat-tail"></div>
+
+            </div>
+
+
+            <!-- PESAN -->
+            <div id="message">
+
+                <div id="messageBox">
+
+                    <div id="messageTitle"></div>
+
+                    <div id="messageText"></div>
+
+                    <button id="restartButton">
+                        🔄 MAIN LAGI
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PETUNJUK -->
+            <div id="instruction">
+                👆 Tutup titik bocor dengan tangan sebelum air habis!
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="javascript.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background:
+        linear-gradient(
+            180deg,
+            #72c9ff 0%,
+            #bcecff 60%,
+            #dff7ff 100%
+        );
+}
+
+
+/* =========================================
+   GAME
+========================================= */
+
+#game {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 25px;
+
+    background: rgba(0, 73, 110, 0.88);
+
+    color: white;
+
+    z-index: 100;
+}
+
+.title {
+    font-size: clamp(20px, 3vw, 34px);
+    font-weight: 900;
+
+    text-shadow:
+        2px 3px 0 #00334d;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+}
+
+.water-stat,
+.time-stat {
+    min-width: 120px;
+
+    padding: 8px 15px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.18);
+
+    text-align: center;
+
+    border: 2px solid rgba(255,255,255,0.35);
+}
+
+.water-stat span,
+.time-stat span {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.water-stat strong,
+.time-stat strong {
+    font-size: 22px;
+}
+
+
+/* =========================================
+   GAME AREA
+========================================= */
+
+#gameArea {
+    position: absolute;
+
+    left: 0;
+    top: 76px;
+
+    width: 100%;
+    height: calc(100% - 76px);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   FLOOR
+========================================= */
+
+#floor {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 18%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #b77b43 0px,
+            #b77b43 70px,
+            #a96b37 72px,
+            #a96b37 140px
+        );
+
+    border-top: 8px solid #7e4c27;
+}
+
+
+/* =========================================
+   AQUARIUM
+========================================= */
+
+#aquarium {
+    position: absolute;
+
+    width: min(720px, 72vw);
+    height: min(520px, 66vh);
+
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -50%);
+
+    border: 10px solid rgba(210, 245, 255, 0.85);
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.03)
+        );
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,0.45),
+        0 25px 50px rgba(0,0,0,0.28);
+
+    overflow: visible;
+
+    z-index: 10;
+}
+
+
+/* =========================================
+   GLASS
+========================================= */
+
+.glass-shine {
+    position: absolute;
+
+    left: 20px;
+    top: 20px;
+
+    width: 35px;
+    height: 75%;
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.28);
+
+    filter: blur(3px);
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   WATER
+========================================= */
+
+#water {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(63,190,255,0.70),
+            rgba(0,112,200,0.90)
+        );
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    transition:
+        height 0.7s ease;
+}
+
+
+/* =========================================
+   WATER WAVES
+========================================= */
+
+.water-wave {
+    position: absolute;
+
+    left: -10%;
+
+    width: 120%;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.28);
+
+    animation: waveMove 4s linear infinite;
+}
+
+.wave1 {
+    top: -15px;
+}
+
+.wave2 {
+    top: -5px;
+
+    opacity: 0.25;
+
+    animation-duration: 6s;
+    animation-direction: reverse;
+}
+
+@keyframes waveMove {
+
+    0% {
+        transform: translateX(-8%);
+    }
+
+    50% {
+        transform: translateX(8%);
+    }
+
+    100% {
+        transform: translateX(-8%);
+    }
+}
+
+
+/* =========================================
+   FISH
+========================================= */
+
+#fish {
+    position: absolute;
+
+    width: 150px;
+    height: 100px;
+
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -50%);
+
+    animation:
+        fishSwim 4s ease-in-out infinite;
+
+    z-index: 8;
+}
+
+.fish-body {
+    position: absolute;
+
+    width: 100px;
+    height: 70px;
+
+    left: 25px;
+    top: 15px;
+
+    border-radius: 55% 45% 45% 55%;
+
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            #fff58a 0%,
+            #ffca28 35%,
+            #ff8f00 80%
+        );
+
+    border: 3px solid #d96f00;
+
+    box-shadow:
+        inset -10px -8px 10px rgba(170,70,0,0.2);
+}
+
+.fish-eye {
+    position: absolute;
+
+    right: 14px;
+    top: 17px;
+
+    width: 15px;
+    height: 15px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    border: 2px solid #333;
+}
+
+.fish-eye::after {
+    content: "";
+
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: black;
+
+    border-radius: 50%;
+
+    left: 3px;
+    top: 3px;
+}
+
+.fish-mouth {
+    position: absolute;
+
+    right: -3px;
+    top: 40px;
+
+    width: 13px;
+    height: 8px;
+
+    border-bottom: 3px solid #7b2d00;
+
+    border-radius: 50%;
+}
+
+.fish-tail {
+    position: absolute;
+
+    left: 0;
+    top: 22px;
+
+    width: 0;
+    height: 0;
+
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+
+    border-right: 50px solid #ff9800;
+
+    filter: drop-shadow(0 3px 1px rgba(0,0,0,0.2));
+}
+
+.fish-fin {
+    position: absolute;
+
+    left: 65px;
+    top: 5px;
+
+    width: 40px;
+    height: 25px;
+
+    background: #ffb300;
+
+    border-radius: 50% 50% 0 50%;
+
+    transform: rotate(-20deg);
+}
+
+@keyframes fishSwim {
+
+    0% {
+        transform: translate(-50%, -50%) translateX(-70px) rotate(-3deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateX(70px) rotate(3deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateX(-70px) rotate(-3deg);
+    }
+}
+
+
+/* =========================================
+   LEAK POINT
+========================================= */
+
+#leakPoint {
+    position: absolute;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #b9f2ff 35%,
+            #00a9e8 70%,
+            #0076b2 100%
+        );
+
+    box-shadow:
+        0 0 10px #ffffff,
+        0 0 25px #00bfff;
+
+    cursor: pointer;
+
+    z-index: 60;
+
+    animation: leakPulse 0.8s infinite alternate;
+
+    touch-action: manipulation;
+}
+
+@keyframes leakPulse {
+
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================================
+   WATER JET
+========================================= */
+
+#waterJet {
+    position: absolute;
+
+    width: 120px;
+    height: 140px;
+
+    z-index: 55;
+
+    pointer-events: none;
+}
+
+#waterJet span {
+    position: absolute;
+
+    width: 7px;
+    height: 65px;
+
+    background:
+        linear-gradient(
+            180deg,
+            white,
+            #b8efff,
+            rgba(255,255,255,0)
+        );
+
+    border-radius: 50%;
+
+    transform-origin: top center;
+
+    animation: waterShoot 0.55s infinite ease-out;
+}
+
+#waterJet span:nth-child(1) {
+    left: 50px;
+    top: 0;
+    transform: rotate(5deg);
+}
+
+#waterJet span:nth-child(2) {
+    left: 65px;
+    top: 4px;
+    transform: rotate(18deg);
+    animation-delay: 0.1s;
+}
+
+#waterJet span:nth-child(3) {
+    left: 38px;
+    top: 5px;
+    transform: rotate(-18deg);
+    animation-delay: 0.2s;
+}
+
+#waterJet span:nth-child(4) {
+    left: 75px;
+    top: 12px;
+    transform: rotate(28deg);
+    animation-delay: 0.3s;
+}
+
+#waterJet span:nth-child(5) {
+    left: 25px;
+    top: 10px;
+    transform: rotate(-28deg);
+    animation-delay: 0.15s;
+}
+
+@keyframes waterShoot {
+
+    0% {
+        opacity: 0;
+        height: 10px;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        height: 100px;
+        transform: translateY(70px) rotate(20deg);
+    }
+}
+
+
+/* =========================================
+   HAND
+========================================= */
+
+#hand {
+    position: absolute;
+
+    font-size: 70px;
+
+    z-index: 70;
+
+    display: none;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(0,0,0,0.3)
+        );
+
+    animation: handClose 0.35s ease-out;
+}
+
+@keyframes handClose {
+
+    0% {
+        transform: scale(0.3) rotate(-20deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   ESCAPE FISH
+========================================= */
+
+#escapeArea {
+    position: absolute;
+
+    left: 0;
+    bottom: 18%;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 80;
+}
+
+#fishOutside {
+    position: absolute;
+
+    width: 110px;
+    height: 70px;
+
+    left: 50%;
+    top: 50%;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+}
+
+.outside-fish-body {
+    position: absolute;
+
+    left: 25px;
+    top: 10px;
+
+    width: 70px;
+    height: 48px;
+
+    border-radius: 55%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd54f,
+            #ff9800
+        );
+
+    border: 3px solid #d66b00;
+}
+
+.outside-eye {
+    position: absolute;
+
+    right: 8px;
+    top: 10px;
+
+    width: 10px;
+    height: 10px;
+
+    background: black;
+
+    border-radius: 50%;
+}
+
+.outside-tail {
+    position: absolute;
+
+    left: 0;
+    top: 12px;
+
+    width: 0;
+    height: 0;
+
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+
+    border-right: 35px solid #ff9800;
+}
+
+
+/* =========================================
+   CAT
+========================================= */
+
+#cat {
+    position: absolute;
+
+    width: 210px;
+    height: 230px;
+
+    right: -260px;
+
+    bottom: 13%;
+
+    z-index: 90;
+
+    opacity: 0;
+}
+
+.cat-head {
+    position: absolute;
+
+    left: 40px;
+    top: 20px;
+
+    width: 130px;
+    height: 120px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0f0f0,
+            #a8a8a8
+        );
+
+    border-radius: 50% 50% 45% 45%;
+
+    border: 4px solid #666;
+}
+
+.cat-ear {
+    position: absolute;
+
+    top: 5px;
+
+    width: 65px;
+    height: 65px;
+
+    background: #bcbcbc;
+
+    z-index: 0;
+
+    border: 4px solid #666;
+}
+
+.left-ear {
+    left: 38px;
+
+    transform: rotate(-25deg);
+
+    clip-path: polygon(
+        50% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+.right-ear {
+    right: 35px;
+
+    transform: rotate(25deg);
+
+    clip-path: polygon(
+        50% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+.cat-eye {
+    position: absolute;
+
+    top: 48px;
+
+    width: 18px;
+    height: 22px;
+
+    background: #222;
+
+    border-radius: 50%;
+}
+
+.left-eye {
+    left: 30px;
+}
+
+.right-eye {
+    right: 30px;
+}
+
+.cat-nose {
+    position: absolute;
+
+    left: 56px;
+    top: 72px;
+
+    width: 18px;
+    height: 13px;
+
+    background: #e88;
+
+    border-radius: 50%;
+}
+
+.cat-mouth {
+    position: absolute;
+
+    left: 50px;
+    top: 84px;
+
+    width: 35px;
+    height: 20px;
+
+    border-bottom: 4px solid #333;
+
+    border-radius: 0 0 50% 50%;
+}
+
+.cat-mouth span {
+    display: none;
+}
+
+#cat.eating .cat-mouth {
+    height: 35px;
+
+    background: #8b1e1e;
+
+    border-radius: 0 0 50% 50%;
+}
+
+.cat-whisker {
+    position: absolute;
+
+    width: 45px;
+    height: 2px;
+
+    background: #555;
+
+    left: -30px;
+}
+
+.w1 {
+    top: 72px;
+    transform: rotate(10deg);
+}
+
+.w2 {
+    top: 82px;
+}
+
+.w3 {
+    top: 92px;
+    transform: rotate(-10deg);
+}
+
+.cat-body {
+    position: absolute;
+
+    left: 45px;
+    bottom: 0;
+
+    width: 120px;
+    height: 125px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #aaa,
+            #777
+        );
+
+    border-radius: 60px 60px 30px 30px;
+
+    border: 4px solid #666;
+}
+
+.cat-paw {
+    position: absolute;
+
+    width: 45px;
+    height: 65px;
+
+    bottom: 30px;
+
+    background: #999;
+
+    border-radius: 50px;
+
+    border: 4px solid #666;
+}
+
+.left-paw {
+    left: 30px;
+}
+
+.right-paw {
+    right: 30px;
+}
+
+.cat-tail {
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    right: -40px;
+    bottom: 30px;
+
+    border: 15px solid #888;
+
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+
+    border-radius: 50%;
+
+    transform: rotate(35deg);
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+#message {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 25, 40, 0.78);
+
+    z-index: 200;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#messageBox {
+    width: min(600px, 90vw);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #dff8ff
+        );
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.5);
+
+    animation: messagePop 0.6s ease-out;
+}
+
+@keyframes messagePop {
+
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#messageTitle {
+    font-size: clamp(55px, 10vw, 100px);
+
+    font-weight: 1000;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        3px 4px 0 rgba(0,0,0,0.15);
+}
+
+#messageText {
+    font-size: 22px;
+
+    color: #333;
+
+    margin-bottom: 30px;
+}
+
+#restartButton {
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #008fd5;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #00648f;
+
+    transition: 0.15s;
+}
+
+#restartButton:hover {
+    transform: translateY(-2px);
+}
+
+#restartButton:active {
+    transform: translateY(4px);
+
+    box-shadow:
+        0 1px 0 #00648f;
+}
+
+
+/* =========================================
+   INSTRUCTION
+========================================= */
+
+#instruction {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 15px;
+
+    transform: translateX(-50%);
+
+    padding: 10px 20px;
+
+    background: rgba(0,50,80,0.75);
+
+    color: white;
+
+    border-radius: 30px;
+
+    font-size: 15px;
+
+    text-align: center;
+
+    z-index: 120;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .top-bar {
+        height: 65px;
+
+        padding: 0 10px;
+    }
+
+    .title {
+        font-size: 17px;
+    }
+
+    .stats {
+        gap: 5px;
+    }
+
+    .water-stat,
+    .time-stat {
+        min-width: 75px;
+
+        padding: 5px;
+    }
+
+    .water-stat span,
+    .time-stat span {
+        font-size: 9px;
+    }
+
+    .water-stat strong,
+    .time-stat strong {
+        font-size: 16px;
+    }
+
+    #gameArea {
+        top: 65px;
+
+        height: calc(100% - 65px);
+    }
+
+    #aquarium {
+        width: 90vw;
+        height: 58vh;
+
+        top: 44%;
+    }
+
+    #fish {
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    #instruction {
+        width: 90%;
+
+        font-size: 12px;
+
+        white-space: normal;
+
+        bottom: 8px;
+    }
+
+    #cat {
+        transform: scale(0.75);
+        transform-origin: bottom right;
+    }
+}
+
+
+/* =========================================
+   ACCESSIBILITY / TOUCH
+========================================= */
+
+button {
+    touch-action: manipulation;
+}
+
+#leakPoint:active {
+    transform: scale(0.75);
+}
